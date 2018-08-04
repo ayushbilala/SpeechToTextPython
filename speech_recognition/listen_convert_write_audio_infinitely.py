@@ -44,6 +44,7 @@ with sr.Microphone() as source:
     r.adjust_for_ambient_noise(source)  # listen for 1 second to calibrate the energy threshold for ambient noise levels
     try:
         while True:  # repeatedly listen for phrases and put the resulting audio on the audio processing job queue
+            print("Listening to your conversations....")
             audio_queue.put(r.listen(source))
     except KeyboardInterrupt:  # allow Ctrl + C to shut down the program
         pass
