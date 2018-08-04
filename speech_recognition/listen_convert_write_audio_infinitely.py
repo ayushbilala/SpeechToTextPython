@@ -43,6 +43,7 @@ recognize_thread.start()
 with sr.Microphone() as source:
     try:
         while True:  # repeatedly listen for phrases and put the resulting audio on the audio processing job queue
+            print("Listening to your conversations....")
             audio_queue.put(r.listen(source))
     except KeyboardInterrupt:  # allow Ctrl + C to shut down the program
         pass
