@@ -41,6 +41,7 @@ recognize_thread = Thread(target=recognize_worker)
 recognize_thread.daemon = True
 recognize_thread.start()
 with sr.Microphone() as source:
+    r.adjust_for_ambient_noise(source)  # listen for 1 second to calibrate the energy threshold for ambient noise levels
     try:
         while True:  # repeatedly listen for phrases and put the resulting audio on the audio processing job queue
             audio_queue.put(r.listen(source))
